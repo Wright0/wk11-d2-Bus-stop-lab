@@ -24,4 +24,10 @@ public class Bus {
     public void removeOnePassenger() {
         this.passengers.remove(0);
     }
+
+    public void addMultiplePassengers(ArrayList<Person> people){
+        for (Person person : people){
+            this.addOnePassenger(person);
+        }
+    }
 }

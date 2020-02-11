@@ -19,10 +19,6 @@ public class BusTest {
         waverley = new BusStop("Waverley");
 
         person = new Person();
-
-//        List<Person> peopleToAdd = Arrays.asList(person, person, person, person, person);
-//        ArrayList<Person> newPassengerList = new ArrayList<Person>(peopleToAdd);
-
     }
 
     @Test
@@ -38,12 +34,9 @@ public class BusTest {
 
     @Test
     public void cannotAddBecauseOverCapacity(){
-        partyBus.addOnePassenger(person);
-        partyBus.addOnePassenger(person);
-        partyBus.addOnePassenger(person);
-        partyBus.addOnePassenger(person);
-        partyBus.addOnePassenger(person);
-        partyBus.addOnePassenger(person);
+        List<Person> peopleToAdd = Arrays.asList(person, person, person, person, person, person);
+        ArrayList<Person> newPassengerList = new ArrayList<Person>(peopleToAdd);
+        partyBus.addMultiplePassengers(newPassengerList);
         assertEquals(5, partyBus.getPassengerCount());
     }
 
