@@ -17,8 +17,9 @@ public class BusTest {
     public void before(){
         partyBus = new Bus("London", 5);
         waverley = new BusStop("Waverley");
-
         person = new Person();
+
+        waverley.addPersonToQueue(person);
     }
 
     @Test
@@ -28,7 +29,7 @@ public class BusTest {
 
     @Test
     public void canAddPassengerIfSpaceAvailable(){
-        partyBus.addOnePassenger(person);
+        partyBus.addPassenger(person);
         assertEquals(1, partyBus.getPassengerCount());
     }
 
@@ -42,18 +43,18 @@ public class BusTest {
 
     @Test
     public void canRemovePassenger(){
-        partyBus.addOnePassenger(person);
-        partyBus.removeOnePassenger();
+        partyBus.addPassenger(person);
+        partyBus.removePassenger();
         assertEquals(0, partyBus.getPassengerCount());
     }
 
     @Test
     public void canPickUpPassengerFromBusStop(){
-        waverley.addPersonToQueue(person);
-        Person personLeavingQueue = waverley.removePersonFromQueue();
-        partyBus.addOnePassenger(personLeavingQueue);
-
+        partyBus.pickUpFromBusStop(waverley);
         assertEquals(0, waverley.getQueueCount());
         assertEquals(1, partyBus.getPassengerCount());
     }
+
+
+
 }

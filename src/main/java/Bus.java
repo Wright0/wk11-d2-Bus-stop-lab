@@ -15,19 +15,26 @@ public class Bus {
         return this.passengers.size();
     }
 
-    public void addOnePassenger(Person personBanana) {
-        if (getPassengerCount() < capacity) {
+    public void addPassenger(Person personBanana) {
+        if (getPassengerCount() < this.capacity) {
             this.passengers.add(personBanana);
         }
     }
 
-    public void removeOnePassenger() {
+    public void removePassenger() {
         this.passengers.remove(0);
     }
 
     public void addMultiplePassengers(ArrayList<Person> people){
         for (Person person : people){
-            this.addOnePassenger(person);
+            this.addPassenger(person);
+        }
+    }
+
+    public void pickUpFromBusStop(BusStop busStop) {
+        if(this.getPassengerCount() < this.capacity && busStop.getQueueCount() > 0){
+            Person personRemoved = busStop.removePersonFromQueue();
+            this.addPassenger(personRemoved);
         }
     }
 }

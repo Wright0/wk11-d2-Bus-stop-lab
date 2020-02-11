@@ -18,6 +18,9 @@ public class BusStop {
     }
 
     public Person removePersonFromQueue() {
+        if (this.queue.isEmpty()){
+            return null;
+        }
         return this.queue.remove(0);
     }
 }
