@@ -11,10 +11,13 @@ public class BusTest {
 
     private Bus partyBus;
     private Person person;
+    private BusStop waverley;
 
     @Before
     public void before(){
         partyBus = new Bus("London", 5);
+        waverley = new BusStop("Waverley");
+
         person = new Person();
 
 //        List<Person> peopleToAdd = Arrays.asList(person, person, person, person, person);
@@ -51,4 +54,13 @@ public class BusTest {
         assertEquals(0, partyBus.getPassengerCount());
     }
 
+    @Test
+    public void canPickUpPassengerFromBusStop(){
+        waverley.addPersonToQueue(person);
+        Person personLeavingQueue = waverley.removePersonFromQueue();
+        partyBus.addOnePassenger(personLeavingQueue);
+
+        assertEquals(0, waverley.getQueueCount());
+        assertEquals(1, partyBus.getPassengerCount());
+    }
 }
